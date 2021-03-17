@@ -24,7 +24,7 @@ class AppointmentController extends Controller
     public function view(Request $request)
     {
         $now = Carbon::now();
-        $appointments = $request->user()->appointments()->where("created_at", ">=", $now->toDateTimeString())->get();
+        $appointments = $request->user()->appointments()->where("date", ">=", $now->toDateTimeString())->get();
         return view("user.appointments", ["appointments" => $appointments]);
     }
 }
