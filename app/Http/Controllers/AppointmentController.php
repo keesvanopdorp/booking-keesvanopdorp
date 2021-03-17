@@ -16,7 +16,9 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        $this->validate($request, [
+            "reason" => "required|max:255"
+        ]);
     }
 
     public function view(Request $request)

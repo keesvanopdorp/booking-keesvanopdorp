@@ -35,6 +35,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole('admin');
-        Appointment::create(["date" => Carbon::now(), "user_id" => 2, "uuid" => Str::uuid()]);
+        Appointment::create(["date" => Carbon::now(), "user_id" => 2, "uuid" => Str::uuid(), "reason" => "test", "description" => "test"]);
     }
 }
