@@ -22,6 +22,10 @@ class LoginController extends Controller
         if (!Auth::attempt($request->only(["email", "password"], $request->remember))) {
             return back()->with("error", "Invalid login details");
         }
+        $user = $request->user();
+        if(!$user->hasRole("admin")){
+            return redirect()->route("home");
+        }
         return redirect()->route("admin")->with("success", "Login succesfull");
     }
 
