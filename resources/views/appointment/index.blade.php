@@ -15,11 +15,20 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <label for="deescription">Beschrijving</label>
-                <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="description" id="description" cols="30" rows="4" class="form-control"></textarea>
+                @error("description")
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 <label for="time">Datum</label>
                 <input type="date" name="date" id="date" class="form-control">
+                @error("date")
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 <label for="time">Tijd</label>
                 <input type="time" name="time" id="time" class="form-control">
+                @error("time")
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 <button type="submit" class="btn btn-primary my-2 w-100">Afspraak boeken</button>
             </form>
         </div>
