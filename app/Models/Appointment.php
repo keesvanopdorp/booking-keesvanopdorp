@@ -15,6 +15,8 @@ class Appointment extends Model
         "uuid",
         "reason",
         "description",
+        "confirmation_send",
+        "confirmed_by_admin"
     ];
 
     /**

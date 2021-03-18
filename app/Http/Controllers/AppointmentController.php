@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
+use App\Events\AppointmentMade;
+use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller
 {
@@ -26,12 +27,13 @@ class AppointmentController extends Controller
             "time" => "required|date_format:H:i",
         ]);
         $appointmentDate = sprintf("%s %s", $request->date, $request->time);
-        $request->user()->appointments()->create([
+        $appointment = $request->user()->appointments()->create([
             "reason" => $request->reason,
             "description" => $request->description,
             "date" => $appointmentDate,
             "uuid" => Str::uuid(),
         ]);
+        AppointmentMade::dispatch($appointment);
         return redirect()->route("user.appointments")->with("success", "Afspraak gemaakt");
     }
 
