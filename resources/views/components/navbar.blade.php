@@ -20,7 +20,7 @@
             @auth
                 @role("admin")
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("admin") }}">Admin dashboard</a>
+                        <a class="nav-link" href="{{ route("admin.index") }}">Admin dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route("admin.appointments.create") }}" class="nav-link">Afspraak zelf inplannen </a>
@@ -31,16 +31,16 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <li>
-                              <a class="dropdown-item" href="{{ route("admin.appointments") }}">Afspraken</a>
+                              <a class="dropdown-item" href="{{ route("admin.appointments.index") }}">Afspraken</a>
                           </li>
                           <li>
-                              <a class="dropdown-item" href="{{ route("admin.users")}}">Gebruikers</a>
+                              <a class="dropdown-item" href="{{ route("admin.users.index")}}">Gebruikers</a>
                           </li>
                         </ul>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("appointment.book") }}">Afspraak maken</a>
+                        <a class="nav-link" href="{{ route("appointment.create") }}">Afspraak maken</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route("user.appointments") }}" class="nav-link">Mijn afspraken</a>

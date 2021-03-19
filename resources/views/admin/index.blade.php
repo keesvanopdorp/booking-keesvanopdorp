@@ -9,7 +9,7 @@
             <div class="card w-75 d-block mx-auto py-3 px-1">
                 <div class="card-body">
                     <h5 class="text-center w-100">{{$appointments->count()}}</h5>
-                    <h5 class="text-center w-100"><a href="{{ route("admin.appointments") }}">@if($appointments->count() >= 2) afspraken @else afspraak @endif</a>deze maand</h5>
+                    <h5 class="text-center w-100"><a href="{{ route("admin.appointments.index") }}">@if($appointments->count() >= 2) afspraken @else afspraak @endif</a>deze maand</h5>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="card w-75 d-block mx-auto py-3 px-1">
                 <div class="card-body">
                     <h5 class="text-center w-100">{{$users->count()}}</h5>
-                    <h5 class="text-center w-100"><a href="{{ route("admin.appointments") }}">@if($users->count() >= 2) gebruikers @else gebruiker @endif</a>deze maand</h5>
+                    <h5 class="text-center w-100"><a href="{{ route("admin.users.index") }}">@if($users->count() >= 2) gebruikers @else gebruiker @endif</a>deze maand</h5>
                 </div>
             </div>
         </div>

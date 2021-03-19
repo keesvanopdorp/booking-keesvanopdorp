@@ -7,7 +7,7 @@
     <div class="card w-25 d-block mx-auto h-25 my-5">
         <div class="card-body">
             <h3 class="w-100 text-center">Afspraak maken</h3>
-            <form action="{{route((Request::url() === route("admin.appointments.create")) ? "admin.appointments.create" :"appointments.create") }}" method="post">
+            <form action="{{route((Request::url() === route("admin.appointments.create")) ? "admin.appointments.store" :"appointments.create") }}" method="post">
                 @csrf
                 @if(Request::url() === route("admin.appointments.create"))
                     <label for="user">Gebruiker</label>

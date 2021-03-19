@@ -32,25 +32,24 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get("/appointments", [AppointmentController::class, "view"])->name("users.appointments");
-    Route::get("/appointment/book", [AppointmentController::class, "index"])->name("appointments.create");
-    Route::post("/appointment/book", [AppointmentController::class, "store"]);
+    Route::get("/appointments/book", [AppointmentController::class, "index"])->name("appointments.create");
+    Route::post("/appointments/book", [AppointmentController::class, "store"]);
 
-    Route::middleware(['role:admin'])->prefix("admin")->group(function () {
+    Route::middleware(['role:admin'])->prefix("admin")->name("admin.")->group(function () {
+        Route::get('/', [AdminController::class, "index"])->name("index");
 
-        Route::get('/', [AdminController::class, "index"])->name("admin");
-
-        Route::prefix("/users")->group(function() {
-            Route::get('/', [AdminUserController::class, "index"])->name("admin.users");
-            Route::get('/create', [AdminUserController::class, "create"])->name("admin.users.create");
-            Route::post('/create', [AdminUserController::class, "store"]);
+        Route::prefix("users")->name("users.")->group(function() {
+            Route::get('/', [AdminUserController::class, "index"])->name("index");
+            Route::get('/create', [AdminUserController::class, "create"])->name("create");
+            Route::post('/create', [AdminUserController::class, "store"])->name("store");
         });
 
-        Route::prefix("/appointments")->group(function() {
-            Route::get('/', [AdminAppointmentController::class, "index"])->name("admin.appointments");
-            Route::get('/{appointment}', [AdminAppointmentController::class, "view"])->name("admin.appointments.view");
-            Route::post('/{appointment}/approve', [AdminAppointmentController::class, "appointment"])->name("admin.appointment");
-            Route::get('/book', [AdminAppointmentController::class, "create"])->name("admin.appointments.create");
-            Route::post('/book', [AdminAppointmentController::class, "store"]);
+        Route::prefix("appointments")->name("appointments.")->group(function() {
+            Route::get('/', [AdminAppointmentController::class, "index"])->name("index");
+            Route::get('/book', [AdminAppointmentController::class, "create"])->name("create");
+            Route::post('/book', [AdminAppointmentController::class, "store"])->name("store");
+            Route::get('/{appointment}', [AdminAppointmentController::class, "view"])->name("view");
+            Route::post('/{appointment}/approve', [AdminAppointmentController::class, "appointment"])->name("approve");
         });
     });
     Route::post("/logout", [LoginController::class, "destroy"])->name("auth.logout");
