@@ -9,7 +9,6 @@ use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
-    //
     public function index()
     {
         $now = Carbon::now();
@@ -24,22 +23,4 @@ class AdminController extends Controller
 
         return view("admin.index", ["appointments" => $appointments, "users" => $users]);
     }
-
-    public function appointments()
-    {
-        $now = Carbon::now();
-        $begin = Carbon::createFromDate($now->year, $now->month, 1);
-        $end = Carbon::createFromDate($now->year, $now->month, 1)->addMonth();
-        $appointments = Appointment::with("user")
-        ->whereBetween("created_at", [$begin->toDateString(), $end->toDateString()])
-        ->orderBy("date", "asc")
-        ->get();
-        return view("admin.appointments", ["appointments" => $appointments]);
-    }
-
-    public function appointment(Appointment $appointment)
-    {
-        return view("admin.appointments");
-    }
-
 }

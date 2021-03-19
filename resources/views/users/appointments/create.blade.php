@@ -7,15 +7,16 @@
     <div class="card w-25 d-block mx-auto h-25 my-5">
         <div class="card-body">
             <h3 class="w-100 text-center">Afspraak maken</h3>
-            <form action="{{route((Request::url() === route("admin.appointment.book")) ? "admin.appointment.book" :"appointment.book") }}" method="post">
+            <form action="{{route((Request::url() === route("admin.appointments.create")) ? "admin.appointments.create" :"appointments.create") }}" method="post">
                 @csrf
-                @if(Request::url() === route("admin.appointment.book"))
+                @if(Request::url() === route("admin.appointments.create"))
                     <label for="user">Gebruiker</label>
                     <select class="form-control" name="user" id="user">
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
+                    <a href="{{ route("admin.users.create") }}" class="d-block text-decoration-none">nieuwe gebruiker aanmaken</a>
                 @endif
                 <label for="reason">Reden</label>
                 <input type="text" name="reason" id="reason" class="form-control">

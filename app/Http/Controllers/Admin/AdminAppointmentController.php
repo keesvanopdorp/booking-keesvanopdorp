@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Appointment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,10 +15,22 @@ class AdminAppointmentController extends Controller
     //
     public function index()
     {
+        $now = Carbon::now();
+        $begin = Carbon::createFromDate($now->year, $now->month, 1);
+        $end = Carbon::createFromDate($now->year, $now->month, 1)->addMonth();
+        $appointments = Appointment::with("user")
+        ->whereBetween("created_at", [$begin->toDateString(), $end->toDateString()])
+        ->orderBy("date", "asc")
+        ->get();
+        return view("admin.appointments.index", ["appointments" => $appointments]);
+    }
+
+    public function create()
+    {
         $user = User::withCount('roles')
         ->has('roles', 0)
         ->get();
-        return view("appointment.index", ["users" => $user]);
+        return view("users.appointments.create", ["users" => $user]);
     }
 
     public function store(Request $request)
@@ -41,5 +54,10 @@ class AdminAppointmentController extends Controller
         ]);
         AppointmentMade::dispatch($appointment);
         return redirect()->route("admin")->with("success", "Afspraak gemaakt voor gebruiker");
+    }
+
+    public function view(Appointment $appointment)
+    {
+        return view("admin.appointments.index");
     }
 }
