@@ -24,6 +24,7 @@
         "@editorjs/editorjs": "^2.19.3",
         "@editorjs/header": "^2.6.1",
         "@editorjs/list": "^1.6.2",
+        "@fortawesome/fontawesome-free": "^5.15.3",
         "@popperjs/core": "^2.9.1",
         "bootstrap": "^5.0.0-beta2"
     }

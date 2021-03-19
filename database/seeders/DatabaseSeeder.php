@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Role::create(["name" => "admin"]);
+        Role::create(["name" => "gebruiker"]);
+
         $user = User::create([
             "name" => "Kees van Opdorp",
             "email" => "keesjrvanopdorp@live.nl",
@@ -26,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ]);
-        User::create([
+        $nonAdmin = User::create([
             "name" => "Kees van Opdorp",
             "email" => "keesjrvanopdorp@gmail.com",
             'email_verified_at' => now(),
@@ -35,6 +37,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole('admin');
+        $nonAdmin->assignRole("gebruiker");
+
         Appointment::create(["date" => Carbon::now(), "user_id" => 2, "uuid" => Str::uuid(), "reason" => "test", "description" => "test"]);
     }
 }

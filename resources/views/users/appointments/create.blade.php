@@ -11,7 +11,7 @@
                 @csrf
                 @if(Request::url() === route("admin.appointments.create"))
                     <label for="user">Gebruiker</label>
-                    <select class="form-control" name="user" id="user">
+                    <select class="form-select" name="user" id="user">
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach

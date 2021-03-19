@@ -20,9 +20,15 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->roles()->pluck('name')->implode(",") }}</td>
                     <td>
-                        <button type="submit"></button>
-                        <button type="submit"></button>
-                        <button type="submit"></button>
+                        <a href="" class="bnt text-decoration-none btn-danger text-center py-1 px-2 rounded mx-1" data-bs-toggle="tooltip" data-bs-placement="buttom" title="gebruiker te verwijderen">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        <a href="" class="bnt btn-primary text-decoration-none text-center py-1 px-2 rounded mx-1" data-bs-toggle="tooltip" data-bs-placement="buttom" title="gebruiker te bewerken">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="" class="bnt btn-danger text-decoration-none text-center py-1 px-2 rounded mx-1" data-bs-toggle="tooltip" data-bs-placement="buttom" title="gebruiker tijdelijk toegang te ontzeggen">
+                            <i class="fas fa-user-slash"></i>
+                        </a>
                     </td>
                 </tr>
             @empty

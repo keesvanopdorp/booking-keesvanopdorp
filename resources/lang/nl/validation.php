@@ -178,6 +178,7 @@ return [
         'street' => 'straatnaam',
         'student' => 'student',
         'subject' => 'onderwerp',
+        'role' => 'rol',
         'teacher' => 'Docent',
         'time' => 'tijd',
         'title' => 'titel',
