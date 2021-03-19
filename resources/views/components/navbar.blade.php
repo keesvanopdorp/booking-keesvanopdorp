@@ -18,6 +18,9 @@
             </li>
             @endguest
             @auth
+                <li class="nav-item">
+                    <a class="nav-link">ingelogd als: {{ auth()->user()->name }}</a>
+                </li>
                 @role("admin")
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route("admin.index") }}">Admin dashboard</a>
