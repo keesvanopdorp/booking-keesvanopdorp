@@ -33,8 +33,6 @@ class LoginController extends Controller
     {
         if (Auth::logout()) {
             return redirect()->route('auth.login')->with("status", "you are successfully logged out!");
-        } else {
-            return redirect()->route("auth.login")->with("error", "You first need to be logged in to logout");
         }
     }
 }

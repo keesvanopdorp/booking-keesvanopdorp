@@ -22,6 +22,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route("admin") }}">Admin dashboard</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.appointment.book") }}" class="nav-link">Afspraak zelf inplannen </a>
+                    </li>
                     <li class="nav-item dropdown mx-sm-auto">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Overzichten

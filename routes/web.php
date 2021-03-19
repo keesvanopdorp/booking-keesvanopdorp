@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\AdminAppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +33,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/appointment/book", [AppointmentController::class, "index"])->name("appointment.book");
     Route::get("/appointments", [AppointmentController::class, "view"])->name("user.appointments");
     Route::post("/appointment/book", [AppointmentController::class, "store"]);
+
     Route::middleware(['role:admin'])->prefix("admin")->group(function () {
         Route::get('/', [AdminController::class, "index"])->name("admin");
         Route::get('/appointments', [AdminController::class, "appointments"])->name("admin.appointments");
         Route::get('/users', [AdminController::class, "appointments"])->name("admin.users");
-        Route::get('/appointments{appointment}', [[AdminController::class, "appointment"]])->name("admin.appointment");
-        Route::post('/appointments{appointment}/approve', [[AdminController::class, "appointment"]])->name("admin.appointment");
+        Route::get('/appointments/{appointment}', [AdminController::class, "appointment"])->name("admin.appointment");
+        Route::post('/appointments{appointment}/approve', [AdminController::class, "appointment"])->name("admin.appointment");
+        Route::get('/appointment/book', [AdminAppointmentController::class, "index"])->name("admin.appointment.book");
+        Route::post('/appointment/book', [AdminAppointmentController::class, "store"]);
     });
     Route::post("/logout", [LoginController::class, "destroy"])->name("auth.logout");
 });
