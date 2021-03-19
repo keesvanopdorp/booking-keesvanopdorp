@@ -22,8 +22,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route("admin") }}">Admin dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("admin.appointments") }}">Afspraken</a>
+                    <li class="nav-item dropdown mx-sm-auto">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Overzichten
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li>
+                              <a class="dropdown-item" href="{{ route("admin.appointments") }}">Afspraken</a>
+                          </li>
+                          <li>
+                              <a class="dropdown-item" href="{{ route("admin.users")}}">Gebruikers</a>
+                          </li>
+                        </ul>
                     </li>
                 @else
                     <li class="nav-item">
@@ -36,7 +46,7 @@
                 <li class="nav-item">
                     <form action="{{ route("auth.logout") }}" method="post">
                         @csrf
-                        <button type="submit" class="btn btn-danger">uitloggen</button>
+                        <button type="submit" class="btn btn-danger btn-block">uitloggen</button>
                     </form>
                 </li>
             @endauth

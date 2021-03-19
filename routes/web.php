@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:admin'])->prefix("admin")->group(function () {
         Route::get('/', [AdminController::class, "index"])->name("admin");
         Route::get('/appointments', [AdminController::class, "appointments"])->name("admin.appointments");
+        Route::get('/users', [AdminController::class, "appointments"])->name("admin.users");
         Route::get('/appointments{appointment}', [[AdminController::class, "appointment"]])->name("admin.appointment");
         Route::post('/appointments{appointment}/approve', [[AdminController::class, "appointment"]])->name("admin.appointment");
     });

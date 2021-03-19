@@ -17,7 +17,9 @@ class SendAppointmentEmailConfirmation
     public function handle(AppointmentMade $event)
     {
         if($event->appointment->confirmation_send === NULL) {
-            Mail::to($event->appointment->user)->send(new AppointmentConfirmation($event->appointment));
+            Mail::to($event->appointment->user)
+            ->bcc(env("ADMIN_EMAIL"))
+            ->send(new AppointmentConfirmation($event->appointment));
         }
     }
 }
