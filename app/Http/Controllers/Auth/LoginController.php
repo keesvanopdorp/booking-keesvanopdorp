@@ -31,8 +31,13 @@ class LoginController extends Controller
 
     public function destroy(Request $request)
     {
-        if (Auth::logout()) {
-            return redirect()->route('auth.login')->with("status", "you are successfully logged out!");
-        }
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('auth.login')->with("status", "you are successfully logged out!");
+
     }
 }

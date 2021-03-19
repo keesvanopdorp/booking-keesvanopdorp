@@ -9,7 +9,7 @@
             <tr>
                 <th>Naam</th>
                 <th>Email</th>
-                <th>rollen</th>
+                <th>rol</th>
                 <th>Acties</th>
             </tr>
         </thead>

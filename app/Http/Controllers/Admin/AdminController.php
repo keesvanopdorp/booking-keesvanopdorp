@@ -14,10 +14,11 @@ class AdminController extends Controller
         $now = Carbon::now();
         $begin = Carbon::createFromDate($now->year, $now->month, 1);
         $end = Carbon::createFromDate($now->year, $now->month, 1)->addMonth();
+
         $users = User::whereBetween("created_at", [$begin->toDateString(), $end->toDateString()])
-            ->withCount('roles')
-            ->has('roles', 0)
+            ->role("gebruiker")
             ->get();
+
         $appointments = Appointment::whereBetween("created_at", [$begin->toDateString(), $end->toDateString()])
             ->get();
 

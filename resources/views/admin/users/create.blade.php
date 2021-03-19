@@ -9,7 +9,6 @@
             <h3 class="w-100 text-center">Gebruiker maken</h3>
             <form action="{{ route("admin.users.store") }}" method="post">
                 @csrf
-
                 <label for="name">{{__("validation.attributes.name")}}</label>
                 <input class="form-control" type="text" name="name" id="name">
                 @error("naam")

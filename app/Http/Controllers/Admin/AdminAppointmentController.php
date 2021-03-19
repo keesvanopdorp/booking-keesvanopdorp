@@ -27,10 +27,8 @@ class AdminAppointmentController extends Controller
 
     public function create()
     {
-        $user = User::withCount('roles')
-        ->has('roles', 0)
-        ->get();
-        return view("users.appointments.create", ["users" => $user]);
+        $users = User::role("gebruiker")->get();
+        return view("users.appointments.create", ["users" => $users]);
     }
 
     public function store(Request $request)
