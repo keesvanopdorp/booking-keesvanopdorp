@@ -25,7 +25,13 @@ class AdminController extends Controller
 
     public function appointments()
     {
-        return view("admin.appointments");
+        $now = Carbon::now();
+        $begin = Carbon::createFromDate($now->year, $now->month, 1);
+        $end = Carbon::createFromDate($now->year, $now->month, 1)->addMonth();
+        $appointments = Appointment::whereBetween("created_at", [$begin->toDateString(), $end->toDateString()])
+        ->orderBy("date", "asc")
+        ->get();
+        return view("admin.appointments", ["appointments" => $appointments]);
     }
 
     public function appointment(Appointment $appointment)
