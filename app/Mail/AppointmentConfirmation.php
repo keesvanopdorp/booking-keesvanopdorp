@@ -33,6 +33,6 @@ class AppointmentConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown("appointment.email.confirmation", ["appointment" => $this->appointment]);
+        return $this->markdown("users.appointments.email.confirmation", ["appointment" => $this->appointment]);
     }
 }

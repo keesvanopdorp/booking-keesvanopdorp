@@ -53,7 +53,7 @@ class AdminAppointmentController extends Controller
             "uuid" => Str::uuid(),
         ]);
         AppointmentMade::dispatch($appointment);
-        return redirect()->route("admin")->with("success", "Afspraak gemaakt voor gebruiker");
+        return redirect()->route("admin.index")->with("success", "Afspraak gemaakt voor gebruiker");
     }
 
     public function view(Appointment $appointment)
