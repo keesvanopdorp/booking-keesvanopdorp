@@ -41,7 +41,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth.login')->with("status", "you are successfully logged out!");
+        return redirect()->route('auth.login.index')->with("status", "you are successfully logged out!");
 
     }
 }
