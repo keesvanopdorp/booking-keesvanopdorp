@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="card w-25 d-block mx-auto h-25 my-5">
         <div class="card-body">
-            <form action="{{route("auth.login") }}" method="post">
+            <form action="{{route("auth.login.store") }}" method="post">
                 @csrf
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control">

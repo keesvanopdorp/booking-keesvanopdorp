@@ -11,10 +11,10 @@
                 <a class="nav-link active" aria-current="page" href="{{ route("home") }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route("auth.login")}}">inloggen</a>
+                <a class="nav-link" href="{{ route("auth.login.index") }}">inloggen</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route("auth.register") }}">registeren</a>
+                <a class="nav-link" href="{{ route("auth.register.index") }}">registeren</a>
             </li>
             @endguest
             @auth
@@ -37,16 +37,16 @@
                               <a class="dropdown-item" href="{{ route("admin.appointments.index") }}">Afspraken</a>
                           </li>
                           <li>
-                              <a class="dropdown-item" href="{{ route("admin.users.index")}}">Gebruikers</a>
+                              <a class="dropdown-item" href="{{ route("admin.users.index") }}">Gebruikers</a>
                           </li>
                         </ul>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("appointment.create") }}">Afspraak maken</a>
+                        <a class="nav-link" href="{{ route("appointments.create") }}">Afspraak maken</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route("user.appointments") }}" class="nav-link">Mijn afspraken</a>
+                        <a href="{{ route("users.appointments") }}" class="nav-link">Mijn afspraken</a>
                     </li>
                 @endrole
                 <li class="nav-item">

@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AppointmentController;
@@ -25,14 +25,14 @@ Route::get('/', function () {
     return view('index');
 })->name("home");
 
-Route::middleware(['guest'])->group(function () {
-    Route::get("/login", [LoginController::class, "index"])->name("auth.login");
-    Route::post("/login", [LoginController::class, "store"]);
-    Route::get("/register", [RegisterController::class, "index"])->name("auth.register");
-    Route::post("/register", [RegisterController::class, "store"]);
+Route::middleware(['guest'])->prefix("auth")->group(function () {
+    Route::get("/login", [LoginController::class, "index"])->name("auth.login.index");
+    Route::post("/login", [LoginController::class, "store"])->name("auth.login.store");
+    Route::get("/register", [RegisterController::class, "index"])->name("auth.register.index");
+    Route::post("/register", [RegisterController::class, "store"])->name("auth.register.store");
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['verified', 'auth'])->group(function () {
     Route::get("/appointments", [AppointmentController::class, "view"])->name("users.appointments");
     Route::get("/appointments/book", [AppointmentController::class, "index"])->name("appointments.create");
     Route::post("/appointments/book", [AppointmentController::class, "store"]);

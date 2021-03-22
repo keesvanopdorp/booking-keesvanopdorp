@@ -13,7 +13,7 @@ class AppointmentController extends Controller
     //
     public function index()
     {
-        return view("appointment.index");
+        return view("users.appointments.create");
     }
 
     public function store(Request $request)
@@ -23,7 +23,7 @@ class AppointmentController extends Controller
         $validator = $this->validate($request, [
             "reason" => "required|string|max:255",
             "description" => "required|string",
-            "date" => "required|date|after:" . $now->format("m-d-Y"),
+            "date" => "required|date|after:" . $now->format("Y-m-d"),
             "time" => "required|date_format:H:i",
         ]);
         $appointmentDate = sprintf("%s %s", $request->date, $request->time);
@@ -34,13 +34,13 @@ class AppointmentController extends Controller
             "uuid" => Str::uuid(),
         ]);
         AppointmentMade::dispatch($appointment);
-        return redirect()->route("user.appointments")->with("success", "Afspraak gemaakt");
+        return redirect()->route("users.appointments")->with("success", "Afspraak gemaakt");
     }
 
     public function view(Request $request)
     {
         $now = Carbon::now();
         $appointments = $request->user()->appointments()->where("date", ">=", $now->toDateTimeString())->get();
-        return view("user.appointments", ["appointments" => $appointments]);
+        return view("users.appointments.index", ["appointments" => $appointments]);
     }
 }

@@ -26,7 +26,11 @@ class LoginController extends Controller
         if(!$user->hasRole("admin")){
             return redirect()->route("home");
         }
-        return redirect()->route("admin.index")->with("success", "Login succesfull");
+        if($user->hasRole("admin")){
+            return redirect()->route("admin.index")->with("success", "Login succesfull");
+        } else {
+            return redirect()->route("users.appointments")->with("success", "Login succesfull");
+        }
     }
 
     public function destroy(Request $request)
